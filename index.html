@@ -1,1 +1,112 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Practical AI tool guides for small businesses and freelancers.">
+<title>Everyday AI Guide</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f5f7f1;color:#172820;font-family:system-ui,sans-serif;line-height:1.6}
+header,footer{background:white;padding:20px 6%}
+header{border-bottom:1px solid #ddd}
+header b{font-size:22px}
+header span{color:#18734f}
+main{max-width:1000px;margin:auto;padding:28px 5%}
+.hero{padding:32px 0}
+h1{font-size:clamp(36px,8vw,60px);line-height:1.1;letter-spacing:-2px}
+h2{margin-top:36px}
+.muted{color:#64746a}
+.btn{display:inline-block;background:#176b4d;color:white;padding:12px 18px;border-radius:9px;text-decoration:none}
+.notice{background:white;border:1px solid #dfe5db;padding:14px;border-radius:10px;font-size:13px;margin:20px 0}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+input,select{padding:12px;border:1px solid #d4ddd3;border-radius:8px;font:inherit;background:white}
+input{flex:1;min-width:180px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:white;border:1px solid #e0e6dd;border-radius:13px;padding:20px}
+.card h3{margin-bottom:5px}
+.card p{color:#64746a;font-size:14px}
+.card a{color:#176b4d;font-weight:bold}
+.tag{font-size:12px;color:#176b4d}
+footer{font-size:13px;color:#64746a;margin-top:35px}
+</style>
+</head>
+<body>
+<header><b>Everyday<span>AI</span> Guide</b></header>
+<main>
+<section class="hero">
+<p><strong>SMARTER TOOLS. LESS GUESSWORK.</strong></p>
+<h1>Find AI tools that fit your work.</h1>
+<p class="muted">Practical guides for freelancers, creators, and small businesses. Compare tools before spending money.</p>
+<a class="btn" href="#tools">Explore AI tools ↓</a>
+<div class="notice"><strong>Affiliate disclosure:</strong> We may earn commissions from qualifying purchases through approved affiliate links. Recommendations aim to be useful and honest.</div>
+</section>
+<section id="tools">
+<h2>Explore AI tools</h2>
+<p class="muted">Search by name or filter by category.</p>
+<div class="controls">
+<input id="search" placeholder="Search tools..." aria-label="Search tools">
+<select id="category" aria-label="Category">
+<option value="all">All categories</option>
+<option value="assistant">AI assistants</option>
+<option value="design">Design</option>
+<option value="writing">Writing</option>
+</select>
+</div>
+<div class="grid" id="grid">
+<article class="card" data-cat="assistant" data-search="chatgpt assistant research brainstorming">
+<div class="tag">AI ASSISTANT</div><h3>ChatGPT</h3>
+<p>Explore brainstorming, drafting, learning, and everyday business tasks.</p>
+<a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Official website ↗</a>
+</article>
+<article class="card" data-cat="design" data-search="canva graphics design presentations">
+<div class="tag">DESIGN</div><h3>Canva</h3>
+<p>Explore tools for social graphics, presentations, and marketing materials.</p>
+<a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer">Official website ↗</a>
+</article>
+<article class="card" data-cat="writing" data-search="writesonic content marketing writing">
+<div class="tag">WRITING</div><h3>Writesonic</h3>
+<p>Investigate AI-assisted content workflows and verify current features.</p>
+<a href="https://writesonic.com/" target="_blank" rel="noopener noreferrer">Official website ↗</a>
+</article>
+<article class="card" data-cat="writing" data-search="jasper marketing writing brand content">
+<div class="tag">MARKETING</div><h3>Jasper</h3>
+<p>Explore brand-focused marketing content workflows and compare plan costs.</p>
+<a href="https://www.jasper.ai/" target="_blank" rel="noopener noreferrer">Official website ↗</a>
+</article>
+</div>
+<p class="muted" id="count" aria-live="polite"></p>
+</section>
+<section>
+<h2>Before you pay</h2>
+<div class="notice">Check current pricing, cancellation terms, privacy settings, and usage limits with each provider. Listings are starting points, not claims of independent testing.</div>
+<h2>Our approach</h2>
+<p class="muted">We aim to help readers choose practical tools without hype or unrealistic income promises. Results are not guaranteed.</p>
+</section>
+</main>
+<footer>
+<strong>Everyday AI Guide</strong>
+<p>Educational project. Add a real contact address and appropriate privacy information before launch.</p>
+<p>Affiliate links will be added only after program approval. © 2026 Everyday AI Guide</p>
+</footer>
+<script>
+const s=document.querySelector('#search');
+const c=document.querySelector('#category');
+const cards=[...document.querySelectorAll('.card')];
+const count=document.querySelector('#count');
+function filter(){
+let n=0;
+cards.forEach(x=>{
+const ok=(x.dataset.search+' '+x.innerText).toLowerCase().includes(s.value.toLowerCase().trim())&&(c.value==='all'||x.dataset.cat===c.value);
+x.hidden=!ok;
+if(ok)n++;
+});
+count.textContent='Showing '+n+' tools.';
+}
+s.addEventListener('input',filter);
+c.addEventListener('change',filter);
+filter();
+</script>
+</body>
+</html>
